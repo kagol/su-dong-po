@@ -1,0 +1,27 @@
+name: Auto publish
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CheckOut Code
+        uses: actions/checkout@master
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Get package version
+        uses: tyankatsu0105/read-package-version-actions@v1
+        with: 
+          path: './packages/devui-vue'
+        id: package-version
+
+      - name: Create tag
+        run: echo 'Version is ${{ steps.package-version.outputs.version}}'
