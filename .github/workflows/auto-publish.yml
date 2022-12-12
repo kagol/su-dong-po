@@ -24,8 +24,8 @@ jobs:
         id: package-version
 
       - name: Create a tag
-        uses: simpleactions/create-tag@v1
+        uses: negz/create-tag@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: ${{ github.ref }} merged and created ${{ steps.package-version.outputs.version }}
-          tag: v${{ steps.package-version.outputs.version }}
+          version: ${{ steps.package-version.outputs.version }}
+          message: 'Release v${{ steps.package-version.outputs.version }}'
+          token: ${{ secrets.GITHUB_TOKEN }}
