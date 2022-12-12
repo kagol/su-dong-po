@@ -23,9 +23,8 @@ jobs:
           path: packages/devui-vue
         id: package-version
 
-      - name: Create tag
-        run: |
-          echo 'Version is ${{ steps.package-version.outputs.version}}'
-          git tag -a 'v${{ steps.package-version.outputs.version}}' -m 'Release v${{ steps.package-version.outputs.version}}'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Create a tag
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: ${{ github.ref }} merged and created ${{ steps.package-version.outputs.version }}
+          tag: v${{ steps.package-version.outputs.version }}
