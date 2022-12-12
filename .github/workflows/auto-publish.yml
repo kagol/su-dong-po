@@ -20,7 +20,7 @@ jobs:
       - name: Get package version
         uses: tyankatsu0105/read-package-version-actions@v1
         with: 
-          path: './packages/devui-vue'
+          path: packages/devui-vue
         id: package-version
 
       - name: Create tag
