@@ -24,6 +24,7 @@ jobs:
         id: package-version
 
       - name: Create a tag
+        uses: simpleactions/create-tag
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           message: ${{ github.ref }} merged and created ${{ steps.package-version.outputs.version }}
