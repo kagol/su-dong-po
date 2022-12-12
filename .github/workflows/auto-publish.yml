@@ -27,3 +27,5 @@ jobs:
         run: |
           echo 'Version is ${{ steps.package-version.outputs.version}}'
           git tag -a 'v${{ steps.package-version.outputs.version}}' -m 'Release v${{ steps.package-version.outputs.version}}'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
